@@ -17,7 +17,7 @@ export default new Router({
       path: "/time",
       name: "time",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./vant/time.vue")
+        import(/* webpackChunkName: "about" */ "./views/time.vue")
     }
   ]
 });
