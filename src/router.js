@@ -14,10 +14,16 @@ export default new Router({
       component: Home
     },
     {
-      path: "/time",
-      name: "time",
+      path: "/datetimePicker",
+      name: "datetimePicker",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/time.vue")
+        import("./vant/DatetimePicker.vue")
+    },
+    {
+        path:"/Collapse",
+        name: "Collapse",
+        component: () =>
+          import("./vant/Collapse.vue")
     }
   ]
 });

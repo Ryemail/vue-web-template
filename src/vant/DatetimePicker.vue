@@ -1,46 +1,49 @@
 <template>
-  <div class="datetimePicker">
-    <van-popup v-model="dateShow" position="bottom">
-      <van-datetime-picker v-model="currentDate" :type="type" @cancel="cancel" @confirm="confirm"/>
+  <div>
+    <van-cell-group>
+      <van-field v-model="form.value" readonly @click="show" placeholder="请选择时间"/>
+    </van-cell-group>
+    <van-popup v-model="date.value" :position="date.position">
+      <van-datetime-picker
+        v-model="date.currentDate"
+        :type="date.type"
+        @cancel="show"
+        @confirm="confirm"
+      />
     </van-popup>
   </div>
 </template>
 <script>
 import Vue from "vue";
-import { DatetimePicker, Popup } from "vant";
-import { dateFtt } from "../assets/public/";
-Vue.use(DatetimePicker).use(Popup);
+import { DatetimePicker, Popup, Field, CellGroup } from "vant";
+import { dateFtt } from "@/assets/public/";
+Vue.use(DatetimePicker)
+  .use(Popup)
+  .use(CellGroup)
+  .use(Field);
 export default {
-  props: {
-    fmt: {
-      type: String,
-      default: "yyyy-MM-dd"
-    },
-    show:{
-        type: Boolean,
-        default: false
-    },
-    type: {
-      type: String,
-      default: "date"
-    }
-  },
   data() {
     return {
-      dateShow: this.show,
-      currentDate: new Date()
+      date: {
+        type: "date",
+        value: false,
+        position: "bottom",
+        currentDate: new Date()
+      },
+      form: {
+        value: ""
+      }
     };
   },
-  created(){
-      this.dateShow = this.show;
-  },
+  created() {},
   methods: {
-    cancel() {
-      this.dateShow = false;
+    show() {
+      this.date.value = !this.date.value;
     },
+
     confirm(value) {
-      this.dateShow = false;
-      this.$emit("confirm", dateFtt(this.fmt, new Date(value)));
+      this.show();
+      this.form.value = dateFtt("yyyy年MM月", new Date(value))
     }
   }
 };
