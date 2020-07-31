@@ -1,43 +1,21 @@
-<style lang="less" scoped>
-.home {
-  p {
-    font-size: 60px;
-  }
-}
-</style>
-
 <template>
-  <div class="home wrap padding-lr-0">
-    <van-tabs v-model="active" class="flex flex-dir flex-just flex-1">
-      <van-tab :title="`标签${item}`" v-for="item in 6" :key="item">
-        <div class="padding-lr-30 height-100 flex flex-dir">
-          <div>
-            内容 {{ item }}
-            <router-link to="/about">about</router-link>
-            <p v-for="item in 56" :key="item">{{ item }}</p>
-          </div>
-          <footer class="footer">青橄榄 提供技术支持</footer>
-        </div>
-      </van-tab>
-    </van-tabs>
-  </div>
+    <section class="home">
+        <img
+            src="https://t8.baidu.com/it/u=1484500186,1503043093&fm=79&app=86&size=h300&n=0&g=4n&f=jpeg?sec=1596789580&t=31a9dab7ed9f61461f3d0cae7e2b289c"
+        />
+        <van-button type="primary">主要按钮</van-button>
+    </section>
 </template>
 
-<script>
-import Vue from "vue";
-import { Tab, Tabs } from "vant";
-Vue.use(Tab).use(Tabs);
+<script lang="ts">
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
-export default {
-  name: "home",
-  components: {},
-  created() {
-    this.$store.commit("name", "你是白痴吗?");
-  },
-  data() {
-    return {
-      active: 1
-    };
-  }
-};
+@Component
+export default class Home extends Vue {}
 </script>
+
+<style lang="less" scoped>
+img {
+    width: 200px;
+}
+</style>

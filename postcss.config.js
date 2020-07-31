@@ -1,14 +1,17 @@
-module.exports = {
-    plugins: {
-        autoprefixer: {
-            browsers: ["Android >= 4.0", "iOS >= 7"]
-        },
-        "postcss-pxtorem": {
-            rootValue: 75,
-            propList: ["*"],
-            selectorBlackList: ['van'],
-            minPixelValue: 2
-        }
+module.exports = ({ file }) => {
+    let rootValue = 75;
+    if (file && file.dirname && file.dirname.indexOf('vant') > -1) {
+        rootValue = 37.5;
     }
-
+    return {
+        plugins: [
+            require('autoprefixer')(),
+            require('postcss-pxtorem')({
+                rootValue: rootValue,
+                propList: ['*'],
+                // selectorBlackList: ['van'],
+                // minPixelValue: 2
+            }),
+        ],
+    };
 };

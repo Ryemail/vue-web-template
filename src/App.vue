@@ -1,15 +1,25 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+    <div id="app">
+        <router-view />
+    </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import HelloWorld from './components/HelloWorld.vue';
+
+@Component({
+    components: {
+        HelloWorld,
+    },
+})
+export default class App extends Vue {}
+</script>
 
 <style>
 #app {
-    height: 100%;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
 }
 </style>
