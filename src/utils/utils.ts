@@ -1,5 +1,5 @@
-export const format = (format = 'yyyy-MM-dd', times?: number | Date) => {
-    const d = new Date(times || Date.now());
+export const format = (format = 'yyyy-MM-dd', times: number | Date = Date.now()) => {
+    const d = new Date(times);
 
     const o: { [key: string]: number } = {
         'M+': d.getMonth() + 1, //月份
