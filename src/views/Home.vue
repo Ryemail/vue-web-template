@@ -8,10 +8,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
+import { util } from '@/utils';
 
 @Component
-export default class Home extends Vue {}
+export default class Home extends Vue {
+    created() {
+        console.log(util.format('yyyy-MM-dd'));
+    }
+}
 </script>
 
 <style lang="less" scoped>
