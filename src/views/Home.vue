@@ -1,7 +1,7 @@
 <template>
     <section class="home">
         <van-button type="primary">主要按钮</van-button>
-        <div class="container"></div>
+        <!-- <div class="container"></div> -->
         <div>
             {{ date }}
         </div>
@@ -16,9 +16,7 @@ import { util } from '@/utils';
 export default class Home extends Vue {
     date = '';
     created() {
-        setInterval(() => {
-            this.date = util.format('yyyy-MM-dd hh:mm:ss');
-        }, 1000);
+        this.date = util.format('yyyy-MM-dd hh:mm:ss');
     }
 }
 </script>
