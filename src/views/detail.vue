@@ -1,5 +1,12 @@
 <template>
-    <div class="about">
-        <h1>This is an about page</h1>
-    </div>
+    <section class="detail"></section>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component
+export default class Detail extends Vue {}
+</script>
+
+<style lang="less"></style>
