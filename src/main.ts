@@ -7,9 +7,9 @@ import store from './store';
 
 import 'amfe-flexible';
 
-import { Button } from 'vant';
+import { Button, Field } from 'vant';
 
-Vue.use(Button);
+Vue.use(Button).use(Field);
 
 Vue.config.productionTip = false;
 

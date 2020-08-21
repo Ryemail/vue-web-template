@@ -5,18 +5,22 @@
         <div>
             {{ date }}
         </div>
+        <van-field v-model="user" label="文本" placeholder="请输入用户名" />
     </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Mixins } from 'vue-property-decorator';
 import { util } from '@/utils';
+import Keyboard from '@/mixins/keyboard';
 
 @Component
-export default class Home extends Vue {
+export default class Home extends Mixins(Keyboard) {
     date = '';
+    user = '';
 
     created() {
+        console.log(this);
         this.date = util.format('yyyy-MM-dd hh:mm:ss');
     }
 }
