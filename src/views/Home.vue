@@ -15,6 +15,7 @@ import { util } from '@/utils';
 @Component
 export default class Home extends Vue {
     date = '';
+
     created() {
         this.date = util.format('yyyy-MM-dd hh:mm:ss');
     }
