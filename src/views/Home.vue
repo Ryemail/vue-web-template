@@ -28,6 +28,7 @@ export default class Home extends Mixins(Keyboard) {
     }
 
     created() {
+        // this.$store.commit('changeFooter', false);
         const count = () => {
             this.date = util.format('yyyy/MM/dd hh:mm:ss');
         };
@@ -59,6 +60,9 @@ export default class Home extends Mixins(Keyboard) {
 </script>
 
 <style lang="less" scoped>
+.home {
+    flex: 1;
+}
 .container {
     position: relative;
     width: 500px;

@@ -7,8 +7,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         userInfo: null,
+        footer: true,
     },
-    mutations: {},
+    mutations: {
+        changeFooter(state, value) {
+            state.footer = value;
+        },
+    },
     actions: {},
     modules: {},
     plugins: [
