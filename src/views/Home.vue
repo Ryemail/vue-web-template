@@ -3,7 +3,7 @@
         <van-button type="primary" @click.prevent.self="test">主要按钮</van-button>
         <!-- <div class="container"></div> -->
         <input v-model.lazy="msg" placeholder="请输入" /> value:{{ msg }}
-        <div v-for="item in v" :key="item">
+        <div v-for="item in 10" :key="item">
             {{ date }}
         </div>
         <van-field v-model.lazy="user" label="文本" placeholder="请输入用户名" />
@@ -21,7 +21,6 @@ export default class Home extends Mixins(Keyboard) {
     date = util.format('yyyy-MM-dd hh:mm:ss');
     user = '';
     msg = '';
-    v: number[] = [];
 
     @Watch('msg')
     watchMsg(value: string) {
