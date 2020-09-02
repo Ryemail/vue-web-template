@@ -1,27 +1,60 @@
 <template>
     <section class="home">
-        <van-button type="primary">主要按钮</van-button>
+        <van-button type="primary" @click.prevent.self="test">主要按钮</van-button>
         <!-- <div class="container"></div> -->
-        <div>
+        <input v-model.lazy="msg" placeholder="请输入" /> value:{{ msg }}
+        <div v-for="item in v" :key="item">
             {{ date }}
         </div>
-        <van-field v-model="user" label="文本" placeholder="请输入用户名" />
+        <van-field v-model.lazy="user" label="文本" placeholder="请输入用户名" />
     </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Mixins } from 'vue-property-decorator';
+import { Component, Mixins, Watch } from 'vue-property-decorator';
 import { util } from '@/utils';
 import Keyboard from '@/mixins/keyboard';
+import '@/utils/raf';
 
 @Component
 export default class Home extends Mixins(Keyboard) {
-    date = '';
+    date = util.format('yyyy-MM-dd hh:mm:ss');
     user = '';
+    msg = '';
+    v: number[] = [];
+
+    @Watch('msg')
+    watchMsg(value: string) {
+        console.log(value, '你牛逼啊');
+    }
 
     created() {
-        console.log(this);
-        this.date = util.format('yyyy-MM-dd hh:mm:ss');
+        const count = () => {
+            this.date = util.format('yyyy/MM/dd hh:mm:ss');
+        };
+
+        const reId = () => {
+            const raf: number = window.requestAnimationFrame(() => {
+                count();
+
+                if (raf >= 10000) return window.cancelAnimationFrame(raf);
+
+                reId();
+            });
+        };
+        reId();
+    }
+
+    countdown() {
+        // const timer = setTimeout(() => {
+        //     clearTimeout(timer);
+        //     this.date = util.format('yyyy-MM-dd hh:mm:ss');
+        //     this.countdown();
+        // }, 1000);
+    }
+
+    test() {
+        //
     }
 }
 </script>
