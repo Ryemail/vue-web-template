@@ -13,7 +13,13 @@ const routes: Array<RouteConfig> = [
     {
         path: '/detail',
         name: 'detail',
-        component: () => import(/* webpackChunkName: "about" */ '../views/detail.vue'),
+        component: () => import('../views/detail.vue'),
+    },
+    {
+        path: '/params',
+        name: 'params',
+        component: () => import('../views/params.vue'),
+        props: route => ({ query: route.query }),
     },
 ];
 

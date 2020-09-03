@@ -3,6 +3,7 @@
         <van-button type="primary" @click.prevent.self="test">主要按钮</van-button>
         <!-- <div class="container"></div> -->
         <input v-model.lazy="msg" placeholder="请输入" /> value:{{ msg }}
+        <router-link to="/params?name=阮垚&sex=男&age=40">params</router-link>
         <div v-for="item in 10" :key="item">
             {{ date }}
         </div>

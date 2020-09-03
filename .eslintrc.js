@@ -18,6 +18,7 @@ module.exports = {
         'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
         'no-constant-condition': 'off',
         'no-unreachable': 'off',
+        'no-useless-escape': 0,
     },
     overrides: [
         {
