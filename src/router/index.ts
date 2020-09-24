@@ -21,6 +21,7 @@ const routes: Array<RouteConfig> = [
         component: () => import('../views/params.vue'),
         props: route => ({ query: route.query }),
     },
+    { path: '/cascader', name: 'cascader', component: () => import('../views/cascader.vue') },
 ];
 
 const router = new VueRouter({

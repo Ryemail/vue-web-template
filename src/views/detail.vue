@@ -3,10 +3,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component
-export default class Detail extends Vue {}
+export default {
+    name: 'Detail',
+};
 </script>
 
 <style lang="less"></style>
