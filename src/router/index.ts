@@ -22,6 +22,7 @@ const routes: Array<RouteConfig> = [
         props: route => ({ query: route.query }),
     },
     { path: '/cascader', name: 'cascader', component: () => import('../views/cascader.vue') },
+    { path: '/login', name: 'login', component: () => import('../views/login.vue') },
 ];
 
 const router = new VueRouter({

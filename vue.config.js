@@ -1,3 +1,10 @@
+const merge = require('webpack-merge'),
+    tsImportPluginFactory = require('ts-import-plugin'),
+    path = require('path'),
+    theme = path.resolve(__dirname, 'src/styles/theme.less');
+
+console.log(theme);
+
 module.exports = {
     publicPath: '/',
     devServer: {
@@ -13,11 +20,8 @@ module.exports = {
     css: {
         loaderOptions: {
             less: {
-                lessOptions: {
-                    modifyVars: {
-                        'button-primary-background-color': '#6887FA',
-                        'button-primary-border-color': '#6887FA',
-                    },
+                modifyVars: {
+                    hack: `true; @import "${theme}";`,
                 },
             },
         },
@@ -26,5 +30,26 @@ module.exports = {
         if (process.env.use_analyzer) {
             config.plugin('webpack-bundle-analyzer').use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin);
         }
+        config.module
+            .rule('ts')
+            .use('ts-loader')
+            .tap(options => {
+                options = merge(options, {
+                    transpileOnly: true,
+                    getCustomTransformers: () => ({
+                        before: [
+                            tsImportPluginFactory({
+                                libraryName: 'vant',
+                                libraryDirectory: 'es',
+                                style: name => `${name}/style/less`,
+                            }),
+                        ],
+                    }),
+                    compilerOptions: {
+                        module: 'es2015',
+                    },
+                });
+                return options;
+            });
     },
 };

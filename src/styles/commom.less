@@ -1,0 +1,34 @@
+@import './var.less';
+
+//文字颜色
+.active-color {
+    color: @active;
+}
+
+.warning-color {
+    color: @warning;
+}
+
+.danger-color {
+    color: @danger;
+}
+
+.disabled-color {
+    color: @disabled;
+}
+
+// placeholder
+::placeholder {
+    color: @disabled;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+}
+
+.app-footer {
+    text-align: center;
+    font-size: 24px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(42, 42, 42, 0.4);
+    padding: 20px;
+}

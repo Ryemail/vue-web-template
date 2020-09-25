@@ -1,12 +1,12 @@
 <template>
     <div>
-        <van-tabs v-model="tabsIndex" :ellipsis="false" ref="tabs">
+        <van-tabs v-model="tabsIndex" ref="tabs" :swipe-threshold="10">
             <van-tab v-for="(tab, key) in tabs" :key="key" :title="tab" animated :disabled="!tab">
                 <ul>
                     <li
                         v-for="(item, index) in tabsData[key]"
                         :key="index"
-                        :class="[index === itemActive[index] ? 'active-color' : '']"
+                        :class="[index === itemActive[key] ? 'active-color' : '']"
                         @click="onTabClick(key, index)"
                     >
                         {{ item }}
@@ -18,41 +18,41 @@
 </template>
 
 <script lang="ts">
-import { Tabs } from 'vant';
-import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 
-export default {
-    name: 'Cascader',
-    data() {
-        return {
-            tabs: ['请选择', '', '', '', ''],
-            tabsIndex: 0,
-            tabsData: [[0, 0, 0, 0, 0, 0]],
-            itemActive: [-1],
-        };
-    },
+@Component
+export default class Cascader extends Vue {
+    tabs = ['请选择', '', '', '', ''];
+    tabsIndex = 0;
+    tabsData = [[0, 0, 0, 0, 0, 0]];
+    itemActive = [-1];
+
     created() {
         this.$store.commit('changeFooter', false);
-    },
-    methods: {
-        onTabClick(key: number, index: number) {
-            const nextIndex = this.tabsIndex + 1;
+    }
 
-            if (nextIndex >= 5) return false;
+    onTabClick(key: number, index: number) {
+        const nextIndex = key + 1;
 
-            this.tabs.splice(nextIndex, 1, '请选择');
+        console.log(this.itemActive);
 
-            this.tabsData.splice(nextIndex, 0, [...Array(6).fill(nextIndex)]);
+        this.itemActive[key] = index;
 
-            this.itemActive[index] = index;
+        if (key >= 3) return false;
 
-            // console.log(this);
-            this.$nextTick(() => {
-                this.tabsIndex = nextIndex;
-            });
-        },
-    },
-};
+        this.tabs.splice(nextIndex, 1, '请选择');
+
+        this.tabsData.splice(nextIndex, 0, [...Array(6).fill(nextIndex)]);
+
+        if (this.tabsData[nextIndex + 1]) {
+            this.tabsData.splice(nextIndex + 1, this.tabsData.length - nextIndex + 1);
+        }
+
+        this.$nextTick(() => {
+            this.tabsIndex = nextIndex;
+        });
+    }
+}
 </script>
 
 <style lang="less"></style>

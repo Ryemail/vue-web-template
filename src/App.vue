@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <router-view />
-        <footer v-if="$store.state.footer">d</footer>
+        <footer class="app-footer" v-if="$store.state.footer">footer</footer>
     </div>
 </template>
 
