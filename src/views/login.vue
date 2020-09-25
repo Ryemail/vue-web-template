@@ -33,18 +33,11 @@
                     v-model="tabsIndex"
                     ref="tabs"
                     :border="true"
-                    :swipe-threshold="10"
                     :title-active-color="`#6887FA`"
                     :color="`#6887FA`"
                 >
                     <div class="go-list-wrap" @scroll="onScroll">
-                        <van-tab
-                            v-for="(tab, key) in [...tabs, '', '', '']"
-                            :key="key"
-                            :title="tab"
-                            animated
-                            :disabled="!tab"
-                        >
+                        <van-tab v-for="(tab, key) in tabs" :key="key" :title="tab" animated :disabled="!tab">
                             <ul class="go-popup-list">
                                 <li
                                     v-for="(item, index) in tabsData[key]"
@@ -73,7 +66,6 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component
 export default class Login extends Vue {
-    //
     show = false;
 
     form = {
@@ -82,7 +74,6 @@ export default class Login extends Vue {
     };
 
     offsetTop = 100;
-    container: null | any = null;
 
     tabs = ['请选择'];
     tabsIndex = 0;
